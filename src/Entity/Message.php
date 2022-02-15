@@ -16,7 +16,7 @@ class Message
 {
     public function __construct()
     {
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     #[ORM\Id]
@@ -27,9 +27,9 @@ class Message
     ])]
     private ?int $id;
 
-    #[ORM\Column(type: Types::STRING, length:30)]
+    #[ORM\Column(type: Types::STRING, length: 30)]
     #[Constraints\Type(type: Types::STRING)]
-    #[Constraints\Length(min:1, max: 30)]
+    #[Constraints\Length(min: 1, max: 30)]
     #[Constraints\NotBlank(allowNull: false, groups: [MessageGroups::CREATE])]
     #[Groups([
         MessageGroups::INDEX,
@@ -38,8 +38,8 @@ class Message
     private string $title;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Constraints\Type(type: Types::TEXT)]
-    #[Constraints\Length(min:1)]
+    #[Constraints\Type(type: Types::STRING)]
+    #[Constraints\Length(min: 1)]
     #[Constraints\NotBlank(allowNull: false, groups: [MessageGroups::CREATE])]
     #[Groups([
         MessageGroups::INDEX,
@@ -89,8 +89,4 @@ class Message
     {
         return $this->createdAt;
     }
-
-
-
-
 }

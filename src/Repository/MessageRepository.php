@@ -15,7 +15,7 @@ class MessageRepository extends AbstractRepository
 
     public function index(): QueryBuilder
     {
-        return  $this->createQueryBuilder('m')
+        return $this->createQueryBuilder('m')
             ->orderBy('m.createdAt', 'DESC');
     }
 }

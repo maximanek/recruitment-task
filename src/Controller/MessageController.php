@@ -7,6 +7,7 @@ use App\Constant\MessageGroups;
 use App\Entity\Message;
 use App\Helper\Paginator;
 use App\Repository\MessageRepository;
+use App\Service\Instantiator;
 use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use App\Component\Annotation as Param;
+use function MongoDB\BSON\toJSON;
 
 class MessageController extends AbstractController
 {
@@ -42,8 +44,8 @@ class MessageController extends AbstractController
     #[Param\Instance]
     public function create(
         EntityManagerInterface $manager,
-        Request $request
-    ): Response
+        Request                $request,
+    ): string
     {
         $request = $request->toArray();
 

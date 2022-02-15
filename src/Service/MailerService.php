@@ -15,7 +15,8 @@ class MailerService
     /**
      * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function execute(Message $message): void {
+    public function execute(Message $message): void
+    {
         $email = (new Email())
             ->from('maximanek@gmail.com')
             ->to('ziemanek@gmail.com')
