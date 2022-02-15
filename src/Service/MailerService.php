@@ -18,7 +18,7 @@ class MailerService
     public function execute(Message $message): void
     {
         $email = (new Email())
-            ->from('maximanek@gmail.com')
+            ->from('user@something.com')
             ->to('ziemanek@gmail.com')
             ->subject('New message with title: ' . $message->getTitle())
             ->text("Here's message content: " . $message->getContent());

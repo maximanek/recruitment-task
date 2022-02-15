@@ -45,7 +45,7 @@ class MessageController extends AbstractController
     public function create(
         EntityManagerInterface $manager,
         Request                $request,
-    ): string
+    ): Response
     {
         $request = $request->toArray();
 

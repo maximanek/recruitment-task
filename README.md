@@ -9,17 +9,50 @@ Po skonfigurowaniu aplikacji w ten sposób możesz uruchomić ją poleceniem
 `php -S 127.0.0.1:8000 -t public`. Aplikacja będzie wtedy dostępna pod adresem
 127.0.0.1, na porcie 8000.
 
-Żądania do aplikacji wysyłać możesz przy pomocy aplikacji takich jak Postman,
-czy Insomnia. Dokumentacja API jest dostępna [pod tym adresem](https://documenter.getpostman.com/view/7692016/UVXokDCj).
+Należy ustawić `MAILER_DSN` w pliku App\.env na poprawny
+```dotenv
+ MAILER_DSN=gmail://user:password@default
+```
+Oraz w `App/src/Service/MailerService.php`  `->from('user@something.com')`
+```php 
+->from('user@something.com')
+```
 
-### Zadanie
-Zaprojektuj i utwórz nową encję o nazwie Message, która reprezentuje wiadomości
-wysłane do administracji przez formularz kontaktowy. Następnie utwórz kontroler,
-który pozwala na utworzenie nowej wiadomości oraz wyświetlenie listy wszystkich
-wiadomości.
+Dokumentacja Encji Message
 
-Utworzenie wiadomości powinno skutkować wysłaniem maila z systemu na adres
-administratora (dowolny, jaki założysz).
+GET /messages
+```json
+{
+  "total_count": 1,
+  "page": 1,
+  "page_count": 1,
+  "items": [
+    {
+      "id": 1,
+      "title": "Awesome Title",
+      "content": "Very interesting message content",
+      "created_at": "2022-02-15T10:50:53+01:00"
+    }
+  ]
+}
+```
 
-Nie przesyłaj rozwiązania w formie pull requestu - wgraj je na własne repozytorium
-lub prześlij je jako `.zip`.
+POST /messages
+
+```json
+{
+  "title": "New message",
+  "content": "Content for new message"
+}
+```
+
+resultat:
+
+```json
+{
+  "id": 2,
+  "title": "New message",
+  "content": "Content for new message",
+  "created_at": "2022-02-15T16:53:50+01:00"
+}
+```
